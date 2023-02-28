@@ -12,7 +12,7 @@ const MovieDetails = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        axios.get(`https://www.omdbapi.com/?i=${"tt0371746"}&apikey=4a3b711b`).then((res) => {
+        axios.get(`https://www.omdbapi.com/?i=${id}&apikey=4a3b711b`).then((res) => {
         dispatch({
             type: "SEARCH_MOVIES_SUCCESS",
             payload: res.data
@@ -37,8 +37,8 @@ const MovieDetails = () => {
                         <p>Writer: {movies?.Writer}</p>
                         <p>Director: {movies?.Director}</p>
                         <p>Language: {movies?.Language}</p>
-                        {movies?.Ratings?.map((r) => {
-                            return <div>
+                        {movies?.Ratings?.map((r,i) => {
+                            return <div key={i}>
                                 <p>Source: {r.Source} Rating: {r.Value}</p>
                             </div>
                         })}
